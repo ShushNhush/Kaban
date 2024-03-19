@@ -12,7 +12,6 @@
 
 <div id="task-table-container">
 
-<form method="post">
     <table class="task-table" id="backlog">
         <thead>
         <tr>
@@ -33,9 +32,9 @@
         </tr>
         </tbody>
     </table>
-</form>
 
-<form method="post">
+
+
     <table class="task-table" id="doing">
         <thead>
         <tr>
@@ -52,13 +51,17 @@
                     <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId - 1}">
                     <button type="submit" formaction="movetask">Left</button>
                 </form>
+                <form method="post">
+                    <input type="hidden" name="taskId" th:value="${task.taskId}">
+                    <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId+1}">
+                    <button type="submit" formaction="movetask">Right</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
-</form>
 
-<form method="post">
+
     <table class="task-table" id="testing">
         <thead>
         <tr>
@@ -70,14 +73,21 @@
         <tr th:each="task: ${taskList}" th:if="${task.lifecycleId == 2}">
             <td th:text="${task.title}"></td>
             <td>
-
+                <form method="post">
+                    <input type="hidden" name="taskId" th:value="${task.taskId}">
+                    <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId - 1}">
+                    <button type="submit" formaction="movetask">Left</button>
+                </form>
+                <form method="post">
+                    <input type="hidden" name="taskId" th:value="${task.taskId}">
+                    <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId+1}">
+                    <button type="submit" formaction="movetask">Right</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
-</form>
 
-    <form method="post">
         <table class="task-table" id="done">
             <thead>
             <tr>
@@ -89,11 +99,21 @@
             <tr th:each="task: ${taskList}" th:if="${task.lifecycleId == 3}">
                 <td th:text="${task.title}"></td>
                 <td>
+                    <form method="post">
+                        <input type="hidden" name="taskId" th:value="${task.taskId}">
+                        <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId - 1}">
+                        <button type="submit" formaction="movetask">Left</button>
+                    </form>
+                    <form method="post">
+                        <input type="hidden" name="taskId" th:value="${task.taskId}">
+                        <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId+1}">
+                        <button type="submit" formaction="movetask">Right</button>
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
-    </form>
+
 </div>
 <p th:if="${session.teamname != null}">
     <a href="index.html" th:href="@{/logout}">Logout</a>
