@@ -45,7 +45,7 @@
         <tbody>
         <tr th:each="task: ${taskList}" th:if="${task.lifecycleId == 1}">
             <td th:text="${task.title}"></td>
-            <td>
+            <td class="task-buttons">
                 <form method="post">
                     <input type="hidden" name="taskId" th:value="${task.taskId}">
                     <input type="hidden" name="lifecycleId" th:value="${task.lifecycleId - 1}">
